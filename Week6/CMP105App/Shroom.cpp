@@ -15,13 +15,21 @@ Shroom::~Shroom()
 {
 }
 
+void Shroom::handleInput(float dt)
+{
+	setGoal(sf::Vector2f(input->getMouseX(),input->getMouseY()));
+}
+
 void Shroom::update(float dt)
 {
-	if (getPosition() == goal) {}
+	if (Vector::magnitude(getPosition()-goal) < 0.2) {
+		speed = 150;
+	}
 	else {
 		velocity = goal - getPosition();
 		velocity = sf::Vector2f(velocity.x * speed / Vector::magnitude(velocity), velocity.y * speed / Vector::magnitude(velocity));
 		setPosition(getPosition() + velocity * dt);
+		speed += acceleration;
 	}
 
 }

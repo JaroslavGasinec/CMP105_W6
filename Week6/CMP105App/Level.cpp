@@ -32,6 +32,7 @@ Level::~Level()
 void Level::handleInput(float dt)
 {
 	ball->handleInput(dt);
+	shroom->handleInput(dt);
 }
 
 // Update game objects
