@@ -14,6 +14,13 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 	ball->setInput(in);
 	ball->setPosition(window->getSize().x/2, window->getSize().y/2);
 	ball->setSize(sf::Vector2f(100,100));
+
+	shroom = new Shroom(sf::Vector2f(windowSize) - ball->getSize());
+	shroom_T.loadFromFile("gfx/Mushroom.png");
+	shroom->setTexture(&shroom_T);
+	shroom->setInput(in);
+	shroom->setPosition(window->getSize().x / 2, window->getSize().y / 2);
+	shroom->setSize(sf::Vector2f(100, 100));
 }
 
 Level::~Level()
@@ -32,6 +39,7 @@ void Level::update(float dt)
 {
 	windowSize = window->getSize();
 	ball->update(dt);
+	shroom->update(dt);
 }
 
 // Render level
@@ -39,13 +47,14 @@ void Level::render()
 {
 	beginDraw();
 	window->draw(*ball);
+	window->draw(*shroom);
 	endDraw();
 }
 
 // Begins rendering to the back buffer. Background colour set to light blue.
 void Level::beginDraw()
 {
-	window->clear(sf::Color(100, 149, 237));
+	window->clear(sf::Color(100, 100, 100));
 }
 
 // Ends rendering to the back buffer, and swaps buffer to the screen.
