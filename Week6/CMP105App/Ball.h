@@ -14,6 +14,5 @@ public:
 	~Ball();
 	void handleInput(float dt) override;
 	void update(float dt) override;
-	void setWindowSize(sf::Vector2u* ws);
 };
 

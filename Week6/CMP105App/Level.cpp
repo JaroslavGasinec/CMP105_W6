@@ -21,6 +21,13 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 	shroom->setInput(in);
 	shroom->setPosition(window->getSize().x / 2, window->getSize().y / 2);
 	shroom->setSize(sf::Vector2f(100, 100));
+
+	projectile = new Projectile(&windowSize, &scaling);
+	projectile_T.loadFromFile("gfx/Goomba.png");
+	projectile->setTexture(&projectile_T);
+	projectile->setInput(in);
+	projectile->setPosition(window->getSize().x / 2, window->getSize().y / 2);
+	projectile->setSize(sf::Vector2f(100, 100));
 }
 
 Level::~Level()
@@ -33,6 +40,7 @@ void Level::handleInput(float dt)
 {
 	ball->handleInput(dt);
 	shroom->handleInput(dt);
+	projectile->handleInput(dt);
 }
 
 // Update game objects
@@ -41,6 +49,7 @@ void Level::update(float dt)
 	windowSize = window->getSize();
 	ball->update(dt);
 	shroom->update(dt);
+	projectile->update(dt);
 }
 
 // Render level
@@ -49,6 +58,7 @@ void Level::render()
 	beginDraw();
 	window->draw(*ball);
 	window->draw(*shroom);
+	window->draw(*projectile);
 	endDraw();
 }
 

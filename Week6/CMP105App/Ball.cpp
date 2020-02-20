@@ -45,7 +45,3 @@ void Ball::update(float dt)
 	}
 }
 
-void Ball::setWindowSize(sf::Vector2u* ws)
-{
-	windowSize = ws;
-}

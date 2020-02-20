@@ -6,6 +6,7 @@
 #include <iostream>
 #include "Ball.h"
 #include "Shroom.h"
+#include "Projectile.h"
 
 
 class Level{
@@ -27,8 +28,10 @@ private:
 	Input* input;
 	sf::Texture ball_T;
 	sf::Texture shroom_T;
+	sf::Texture projectile_T;
 	GameObject* ball;
 	GameObject* shroom;
+	GameObject* projectile;
 	float scaling;
 	sf::Vector2u windowSize;
 
