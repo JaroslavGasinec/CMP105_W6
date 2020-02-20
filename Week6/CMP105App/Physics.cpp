@@ -1,12 +1,12 @@
 #include "Physics.h"
 
-void Physics::gravity(GameObject* object, float gravity, float dt)
+void Physics::gravity(GameObject* object, float scaling, float gravity, float dt)
 {
-	object->setVelocity(object->getVelocity().x, object->getVelocity().y + gravity*dt*10);
+	object->setVelocity(object->getVelocity().x, object->getVelocity().y + gravity*dt*scaling);
 }
 
-void Physics::gravity(GameObject* object, float dt)
+void Physics::gravity(GameObject* object,float scaling, float dt)
 {
-	gravity(object,9.8,dt);
+	gravity(object, scaling, 9.8, dt);
 }
  

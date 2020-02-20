@@ -26,6 +26,7 @@ private:
 	Input* input;
 	sf::Texture ball_T;
 	GameObject* ball;
+	float scaling;
 
 	// More level variables
 };
