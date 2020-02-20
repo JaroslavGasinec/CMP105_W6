@@ -1,8 +1,10 @@
 #include "Ball.h"
+#include "Physics.h"
 
 Ball::Ball(sf::Vector2u* ws)
 {
 	windowSize = ws;
+	scaling = new float(10.0f);
 }
 
 Ball::Ball(sf::Vector2u* ws, float* scaling)
@@ -35,10 +37,11 @@ void Ball::handleInput(float dt)
 
 void Ball::update(float dt)
 {
+	Physics::gravity(this, *scaling, dt);
 	setPosition(getPosition().x, getPosition().y + ((getVelocity().y*dt+(gravity*dt*dt)/2))*(*scaling));
 	if (getPosition().y > windowSize->y - getSize().y) {
 		setPosition(getPosition().x, windowSize->y - getSize().y);
-		setVelocity(0, velocity.y*-0.75);
+		setVelocity(0, velocity.y*(-0.75));
 	}
 }
 

@@ -31,7 +31,6 @@ void Level::handleInput(float dt)
 void Level::update(float dt)
 {
 	windowSize = window->getSize();
-	Physics::gravity(ball,scaling,dt);
 	ball->update(dt);
 }
 
