@@ -1,4 +1,5 @@
 #include "Level.h"
+#include "Physics.h"
 
 Level::Level(sf::RenderWindow* hwnd, Input* in)
 {
@@ -6,7 +7,12 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 	input = in;
 
 	// initialise game objects
-
+	ball = new Ball();
+	ball_T.loadFromFile("gfx/Beach_Ball.png");
+	ball->setTexture(&ball_T);
+	ball->setInput(in);
+	ball->setPosition(window->getSize().x/2, window->getSize().y/2);
+	ball->setSize(sf::Vector2f(100,100));
 }
 
 Level::~Level()
@@ -17,20 +23,25 @@ Level::~Level()
 // handle user input
 void Level::handleInput(float dt)
 {
-
+	ball->handleInput(dt);
 }
 
 // Update game objects
 void Level::update(float dt)
 {
-
+	Physics::gravity(ball,dt);
+	ball->update(dt);
+	if (ball->getPosition().y > window->getSize().y - ball->getSize().y) {
+		ball->setPosition(ball->getPosition().x, window->getSize().y - ball->getSize().y);
+		ball->setVelocity(0,0);
+	}
 }
 
 // Render level
 void Level::render()
 {
 	beginDraw();
-
+	window->draw(*ball);
 	endDraw();
 }
 
