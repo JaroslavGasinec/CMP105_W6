@@ -6,9 +6,9 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 	window = hwnd;
 	input = in;
 	scaling = 20;
-
+	windowSize = window->getSize();
 	// initialise game objects
-	ball = new Ball(&scaling);
+	ball = new Ball(&windowSize, &scaling);
 	ball_T.loadFromFile("gfx/Beach_Ball.png");
 	ball->setTexture(&ball_T);
 	ball->setInput(in);
@@ -30,12 +30,9 @@ void Level::handleInput(float dt)
 // Update game objects
 void Level::update(float dt)
 {
+	windowSize = window->getSize();
 	Physics::gravity(ball,scaling,dt);
 	ball->update(dt);
-	if (ball->getPosition().y > window->getSize().y - ball->getSize().y) {
-		ball->setPosition(ball->getPosition().x, window->getSize().y - ball->getSize().y);
-		ball->setVelocity(0,0);
-	}
 }
 
 // Render level

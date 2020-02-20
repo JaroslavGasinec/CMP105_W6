@@ -8,11 +8,12 @@ class Ball :
 	sf::Vector2u* windowSize;
 
 public:
-	Ball();
-	Ball(float* scaling);
-	Ball(float* scaling, float gravity);
+	Ball(sf::Vector2u* ws);
+	Ball(sf::Vector2u* ws, float* scaling);
+	Ball(sf::Vector2u* ws, float* scaling, float gravity);
 	~Ball();
 	void handleInput(float dt) override;
 	void update(float dt) override;
+	void setWindowSize(sf::Vector2u* ws);
 };
 

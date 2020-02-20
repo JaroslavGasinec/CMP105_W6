@@ -27,6 +27,7 @@ private:
 	sf::Texture ball_T;
 	GameObject* ball;
 	float scaling;
+	sf::Vector2u windowSize;
 
 	// More level variables
 };
